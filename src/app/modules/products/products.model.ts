@@ -55,6 +55,10 @@ const productSchema = new Schema<TProducts>({
     type: inventorySchema,
     required: true,
   },
+  isDeleted: {
+    type: Boolean,
+    default: false,
+  },
 })
 
 // Create the Product model

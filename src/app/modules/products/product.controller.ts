@@ -11,14 +11,14 @@ const createProduct = async (req: Request, res: Response) => {
       message: 'Product created successfully!',
       data: result,
     })
-  } catch (err: any) {
+  } catch (err) {
     res.status(500).json({
       success: false,
-      message: 'could not create product',
       error: err,
     })
   }
 }
+
 const getAllProduct = async (req: Request, res: Response) => {
   try {
     const result = await productServices.getAllProductFromDB()
@@ -27,7 +27,7 @@ const getAllProduct = async (req: Request, res: Response) => {
       message: 'Products fetched successfully!',
       data: result,
     })
-  } catch (err: any) {
+  } catch (err) {
     res.status(500).json({
       success: false,
       message: 'could not fetch product',
@@ -36,7 +36,99 @@ const getAllProduct = async (req: Request, res: Response) => {
   }
 }
 
+const getProductById = async (req: Request, res: Response) => {
+  const { productId } = req.params
+  try {
+    const result = await productServices.getProductById(productId)
+    res.status(200).json({
+      success: true,
+      message: 'Products fetched successfully!',
+      data: result,
+    })
+  } catch (err) {
+    res.status(500).json({
+      success: false,
+      message: 'could not fetch product',
+      error: err,
+    })
+  }
+}
+const updateProductById = async (req: Request, res: Response) => {
+  try {
+    const { productId } = req.params
+    const updateData = req.body
+    console.log(updateData.variants)
+
+    const result = await productServices.updateProductById(
+      productId,
+      updateData,
+    )
+    if (updateData) {
+      res.status(200).json({
+        success: true,
+        message: 'Products updated successfully!',
+        data: result,
+      })
+    }
+    res.status(200).json(updateProductById)
+  } catch (err) {
+    res.status(500).json({
+      success: false,
+      message: 'could not update product',
+      error: err,
+    })
+  }
+}
+const deleteProductById = async (req: Request, res: Response) => {
+  try {
+    const productId = req.params.id
+
+    const result = await productServices.deleteProductFromDB(productId)
+    res.status(200).json({
+      success: true,
+      message: 'Products deleted successfully!',
+      data: result,
+    })
+  } catch (err) {
+    res.status(500).json({
+      success: false,
+      message: 'could not delete product',
+      error: err,
+    })
+  }
+}
+
+const searchProduct = async (req: Request, res: Response) => {
+  try {
+    const searchTerm = req.query.searchTerm as string
+
+    if (!searchTerm) {
+      res
+        .status(400)
+        .send({ success: false, message: 'Search terms are required' })
+      return
+    }
+
+    const result = await productServices.searchProductFromDB(searchTerm)
+    res.status(200).json({
+      success: true,
+      message: 'Products found successfully!',
+      data: result,
+    })
+  } catch (err) {
+    res.status(500).json({
+      success: false,
+      message: 'could not found product',
+      error: err,
+    })
+  }
+}
+
 export const productController = {
   createProduct,
   getAllProduct,
+  getProductById,
+  updateProductById,
+  deleteProductById,
+  searchProduct,
 }
