@@ -10,8 +10,8 @@ export type TProducts = {
   description: string
   price: number
   category: string
-  tags: [string]
-  variants: [TVariants]
+  tags: string[]
+  variants: TVariants[]
   inventory: TInventory
   isDeleted: boolean
 }
