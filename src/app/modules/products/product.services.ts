@@ -10,7 +10,6 @@ const createProductIntoDB = async (payLoad: TProducts) => {
 
 const getAllProductFromDB = async () => {
   const result = await Product.find()
-
   return result
 }
 

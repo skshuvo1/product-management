@@ -1,11 +1,12 @@
 import { z } from 'zod'
 
-// Define the Order Schema
 const orderSchema = z.object({
   email: z.string().email(),
   productId: z.string().nonempty(),
-  price: z.number().positive(),
-  quantity: z.number().int().positive(),
+  price: z.number(),
+  quantity: z.number(),
 })
 
-export default orderSchema
+// export default orderSchema
+export type TOrders = z.infer<typeof orderSchema>
+export { orderSchema }

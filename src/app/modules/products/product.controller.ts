@@ -30,11 +30,17 @@ const getAllProduct = async (req: Request, res: Response) => {
 
   try {
     const result = await productServices.getAllProductFromDB()
+    // console.log(result)
+    // result.forEach((product) => {
+    //   // console.log(`product: ${product.name}, isDeleted: ${product._id}`)
+    //   if (product.isDeleted == false) {
     res.status(200).json({
       success: true,
       message: 'Products fetched successfully!',
       data: result,
     })
+    // }
+    // })
   } catch (err) {
     res.status(500).json({
       success: false,
