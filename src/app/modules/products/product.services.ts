@@ -33,7 +33,7 @@ const updateProductById = async (id: string, updateData: TProducts) => {
 }
 
 const deleteProductFromDB = async (id: string) => {
-  const result = await Product.updateOne({ id }, { isDeleted: true })
+  const result = await Product.findByIdAndDelete(id)
   return result
 }
 

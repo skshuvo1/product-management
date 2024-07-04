@@ -10,3 +10,6 @@ Details about how the projects run locally;
 8. Use postman to check POST, GET, PUT, UPDATE, DELETE from server & client.
 9. Use zod validation to validate data.
 10. Create order interface, modes, route, controller, service etc to check and find order details and also use zod validation here to validate data.
+11. Create vercel.json and add the necessary command.
+12. vercel login and deploy to vercen.
+    By these way, the projects runs.

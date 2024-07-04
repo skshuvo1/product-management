@@ -61,15 +61,15 @@ const productSchema = new Schema<TProducts>({
   },
 })
 
-productSchema.pre('find', function (next) {
-  this.find({ isDeleted: { $ne: true } })
-  next()
-})
+// productSchema.pre('find', function (next) {
+//   this.find({ isDeleted: { $ne: true } })
+//   next()
+// })
 
-productSchema.pre('findOne', function (next) {
-  this.find({ isDeleted: { $ne: true } })
-  next()
-})
+// productSchema.pre('findOne', function (next) {
+//   this.find({ isDeleted: { $ne: true } })
+//   next()
+// })
 
 // Create the Product model
 const Product = model<TProducts>('Product', productSchema)

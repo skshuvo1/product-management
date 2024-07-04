@@ -11,7 +11,7 @@ app.use('/api/products', productRoutes)
 app.use('/api/orders', orderRoutes)
 
 app.get('/', (req, res) => {
-  res.send('Hello World!')
+  res.send('Thats my assignment 2. Please check it carefully !')
 })
 
 export default app
